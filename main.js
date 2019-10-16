@@ -4,11 +4,12 @@ var ul = document.querySelector("ul");
 
 var lists = document.querySelectorAll("li");
 
-// add done class to existing lists
+// add done class to list element
 function strike() {
   this.classList.toggle("done");
 }
 
+// starts the page with delete button to existing list elements
 function start() {
   var i;
   for (i = 0; i < lists.length; i++) {
@@ -26,12 +27,15 @@ function newDeleteButton() {
   var but = document.createElement("button");
   but.innerHTML = "delete";
   but.classList.add("close");
-  but.addEventListener("click", deleteElement)
+  but.addEventListener("click", deleteElement);
   return but;
 }
+
+// Delete list element
 function deleteElement() {
   this.parentNode.parentNode.removeChild(this.parentNode);
 }
+
 // Add Delete button to every list
 function addDeleteToExisting() {
   var li = document.querySelectorAll("li");
@@ -44,9 +48,11 @@ function addDeleteToExisting() {
   }
 }
 
+// new list element with strike and button enabled
 function addListElement() {
   var li = document.createElement("li");
   var but = newDeleteButton();
+  li.addEventListener("click", strike);
   li.appendChild(document.createTextNode(iteminput.value));
   li.innerHTML += "   ";
   li.appendChild(but);
@@ -66,13 +72,8 @@ function keyboardListener(event) {
   }
 }
 
-function addDoneToli() {}
 button.addEventListener("click", clickListener);
 iteminput.addEventListener("keypress", keyboardListener);
-
-for (i = 0; i < lists.length; i++) {
-  lists[0].addEventListener("click", addDoneToli);
-}
 
 start();
 // function clicker() {
